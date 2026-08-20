@@ -1,19 +1,23 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import GlobalProtect from './GlobalProtect';
+import GlobalProtect from "./GlobalProtect";
 
 export const metadata: Metadata = {
-  title:"Diary Lyrics",
-  description:"Multi language lyrics site"
+  title: "Lyrics Diary",
+  description: "Song lyrics collection",
 };
 
-export default function RootLayout({children}:{children:React.ReactNode}){
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="zh">
+    <html lang="en">
       <body>
         <GlobalProtect />
         {children}
       </body>
     </html>
-  )
+  );
 }
