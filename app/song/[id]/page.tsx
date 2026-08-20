@@ -1,7 +1,7 @@
 "use client";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { songList } from "../../songs";
 
 type WishItem = {
@@ -11,8 +11,11 @@ type WishItem = {
   created_at: string;
 };
 
-export default function SongPage({ params }: { params: { id: string } }) {
-  const song = songList.find((s) => s.id === params.id);
+export default function SongPage({ params }: { params: Promise<{ id: string }> }) {
+  // 解开params Promise
+  const { id } = use(params);
+  const song = songList.find((s) => s.id === id);
+
   if (!song) notFound();
 
   const [name, setName] = useState("");
@@ -23,17 +26,23 @@ export default function SongPage({ params }: { params: { id: string } }) {
 
   const fetchWishes = async () => {
     try {
-      const res = await fetch(`/api/wish?songId=${song.id}`);
+      const res = await fetch(`/api/wish?songId=${id}`);
+      if (!res.ok) {
+        console.warn("api not ok", res.status);
+        setWishes([]);
+        return;
+      }
       const data = await res.json();
-      if (res.ok) setWishes(data.list);
+      setWishes(data.list || []);
     } catch (e) {
       console.error(e);
+      setWishes([]);
     }
   };
 
   useEffect(() => {
     fetchWishes();
-  }, [song.id]);
+  }, [id]);
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -43,7 +52,7 @@ export default function SongPage({ params }: { params: { id: string } }) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          songId: song.id,
+          songId: id,
           songTitle: song.title,
           name,
           wish
