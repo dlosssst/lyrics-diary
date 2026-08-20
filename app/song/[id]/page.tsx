@@ -21,7 +21,6 @@ export default function SongPage({ params }: { params: { id: string } }) {
   const [msg, setMsg] = useState("");
   const [wishes, setWishes] = useState<WishItem[]>([]);
 
-  // 读取当前歌曲的留言
   const fetchWishes = async () => {
     try {
       const res = await fetch(`/api/wish?songId=${song.id}`);
@@ -55,7 +54,7 @@ export default function SongPage({ params }: { params: { id: string } }) {
         setMsg("✅ Wish submitted!");
         setName("");
         setWish("");
-        fetchWishes(); // 提交成功刷新留言列表
+        fetchWishes();
       } else {
         setMsg(`❌ ${data.error}`);
       }
@@ -66,60 +65,59 @@ export default function SongPage({ params }: { params: { id: string } }) {
   };
 
   return (
-    <main className="max-w-3xl mx-auto px-5 py-12">
-      <Link href="/" className="text-blue-600 hover:text-blue-800 mb-8 inline-block">
+    <main style={{maxWidth:"48rem", margin:"0 auto", padding:"3rem 1.25rem"}}>
+      <Link href="/" style={{color:"#2563eb", display:"inline-block", marginBottom:"2rem"}}>
         ← Back to Song List
       </Link>
 
-      <h1 className="text-4xl font-bold mt-2">{song.title}</h1>
-      <p className="text-gray-500 mb-10">{song.artist}</p>
+      <h1 style={{fontSize:"2.5rem", fontWeight:"bold", marginTop:"0.5rem"}}>{song.title}</h1>
+      <p style={{color:"#6b7280", marginBottom:"2.5rem"}}>{song.artist}</p>
 
-      <div className="space-y-10">
+      <div style={{display:"grid", gap:"2.5rem"}}>
         <section>
-          <h2 className="text-xl font-semibold mb-3">中文歌词</h2>
-          <pre className="whitespace-pre-line text-lg leading-loose text-gray-800">{song.zh}</pre>
+          <h2 style={{fontSize:"1.25rem", fontWeight:"600", marginBottom:"0.75rem"}}>中文歌词</h2>
+          <pre style={{whiteSpace:"pre-line", fontSize:"1.125rem", lineHeight:"1.75", color:"#1f2937"}}>{song.zh}</pre>
         </section>
-
         <section>
-          <h2 className="text-xl font-semibold mb-3">English Lyrics</h2>
-          <pre className="whitespace-pre-line text-lg leading-loose text-gray-800">{song.en}</pre>
+          <h2 style={{fontSize:"1.25rem", fontWeight:"600", marginBottom:"0.75rem"}}>English Lyrics</h2>
+          <pre style={{whiteSpace:"pre-line", fontSize:"1.125rem", lineHeight:"1.75", color:"#1f2937"}}>{song.en}</pre>
         </section>
       </div>
 
-      <hr className="my-12 border-gray-200" />
+      <hr style={{margin:"3rem 0", borderColor:"#e5e7eb"}} />
 
-      {/* 已有的留言展示区 */}
-      <div className="mb-10">
-        <h2 className="text-2xl font-semibold mb-4">Messages</h2>
+      {/* Messages List */}
+      <div style={{marginBottom:"2.5rem"}}>
+        <h2 style={{fontSize:"1.5rem", fontWeight:"600", marginBottom:"1rem"}}>Messages</h2>
         {wishes.length === 0 ? (
-          <p className="text-gray-400">No messages yet for this song.</p>
+          <p style={{color:"#9ca3af"}}>No messages yet for this song.</p>
         ) : (
-          <div className="space-y-4">
+          <div style={{display:"grid", gap:"1rem"}}>
             {wishes.map((item) => (
-              <div key={item.id} className="border border-gray-200 rounded-lg p-4">
-                <div className="font-semibold text-gray-700">{item.visitor_name}</div>
-                <div className="text-gray-600 mt-1">{item.message}</div>
-                <div className="text-xs text-gray-400 mt-2">{new Date(item.created_at).toLocaleString()}</div>
+              <div key={item.id} style={{border:"1px solid #e5e7eb", borderRadius:"0.5rem", padding:"1rem"}}>
+                <div style={{fontWeight:"600", color:"#374151"}}>{item.visitor_name}</div>
+                <div style={{color:"#4b5563", marginTop:"0.25rem"}}>{item.message}</div>
+                <div style={{fontSize:"0.75rem", color:"#9ca3af", marginTop:"0.5rem"}}>{new Date(item.created_at).toLocaleString()}</div>
               </div>
             ))}
           </div>
         )}
       </div>
 
-      {/* 提交留言表单 */}
-      <div className="mt-10">
-        <h2 className="text-2xl font-semibold mb-2">Leave your wish</h2>
-        <p className="text-gray-400 text-sm mb-6">Messages are only visible to site admin</p>
+      {/* Wish Form */}
+      <div>
+        <h2 style={{fontSize:"1.5rem", fontWeight:"600", marginBottom:"0.5rem"}}>Leave your wish</h2>
+        <p style={{color:"#9ca3af", fontSize:"0.875rem", marginBottom:"1.5rem"}}>Messages are only visible to site admin</p>
 
-        <div className="space-y-4 max-w-xl">
+        <div style={{display:"grid", gap:"1rem", maxWidth:"40rem"}}>
           <input
-            className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500"
+            style={{border:"1px solid #d1d5db", borderRadius:"0.5rem", padding:"0.75rem 1rem", fontSize:"1rem"}}
             placeholder="Your name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
           <textarea
-            className="w-full border border-gray-300 rounded-lg px-4 py-3 min-h-32 outline-none focus:border-blue-500"
+            style={{border:"1px solid #d1d5db", borderRadius:"0.5rem", padding:"0.75rem 1rem", minHeight:"8rem", fontSize:"1rem"}}
             placeholder="Write your wish"
             value={wish}
             onChange={(e) => setWish(e.target.value)}
@@ -127,11 +125,19 @@ export default function SongPage({ params }: { params: { id: string } }) {
           <button
             onClick={handleSubmit}
             disabled={loading}
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 disabled:opacity-60"
+            style={{
+              backgroundColor:"#2563eb",
+              color:"white",
+              border:"none",
+              borderRadius:"0.5rem",
+              padding:"0.75rem 1.5rem",
+              fontSize:"1rem",
+              cursor:"pointer"
+            }}
           >
             {loading ? "Submitting..." : "Submit Wish"}
           </button>
-          {msg && <div className="mt-2">{msg}</div>}
+          {msg && <div>{msg}</div>}
         </div>
       </div>
     </main>

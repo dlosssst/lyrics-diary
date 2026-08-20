@@ -12,37 +12,52 @@ export default function Home() {
   );
 
   return (
-    <main className="max-w-3xl mx-auto px-5 py-12 min-h-screen bg-white">
-      <h1 className="text-4xl font-bold mb-2">Lyrics Diary</h1>
-      <p className="text-gray-500 mb-6">Collection of multilingual song lyrics</p>
+    <main style={{maxWidth:"48rem", margin:"0 auto", padding:"3rem 1.25rem"}}>
+      <h1 style={{fontSize:"2.5rem", fontWeight:"bold", marginBottom:"0.5rem"}}>Lyrics Diary</h1>
+      <p style={{color:"#6b7280", marginBottom:"1.5rem"}}>Collection of multilingual song lyrics</p>
 
-      {/* 搜索框 */}
-      <div className="mb-10">
+      {/* Search Box */}
+      <div style={{marginBottom:"2.5rem"}}>
         <input
           type="text"
           placeholder="Search song / artist..."
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
-          className="w-full border border-gray-200 rounded-xl px-5 py-3 text-lg outline-none focus:border-blue-500"
+          style={{
+            width:"100%",
+            border:"1px solid #d1d5db",
+            borderRadius:"0.75rem",
+            padding:"0.75rem 1.25rem",
+            fontSize:"1.125rem"
+          }}
         />
       </div>
 
-      <h2 className="text-2xl font-semibold mb-6 border-b pb-2">Song Collection ({filteredSongs.length})</h2>
+      <h2 style={{fontSize:"1.5rem", fontWeight:"600", paddingBottom:"0.5rem", borderBottom:"1px solid #e5e7eb", marginBottom:"1.5rem"}}>
+        Song Collection ({filteredSongs.length})
+      </h2>
 
-      <div className="grid gap-4">
+      <div style={{display:"grid", gap:"1rem"}}>
         {filteredSongs.length > 0 ? (
           filteredSongs.map((song) => (
             <Link
               key={song.id}
               href={`/song/${song.id}`}
-              className="block border border-gray-200 rounded-xl p-6 hover:bg-slate-50 hover:shadow-sm transition-all"
+              style={{
+                display:"block",
+                border:"1px solid #d1d5db",
+                borderRadius:"0.75rem",
+                padding:"1.5rem",
+                textDecoration:"none",
+                color:"inherit"
+              }}
             >
-              <h3 className="text-xl font-semibold">{song.title}</h3>
-              <p className="text-gray-400 mt-1">{song.artist}</p>
+              <h3 style={{fontSize:"1.25rem", fontWeight:"600", margin:"0"}}>{song.title}</h3>
+              <p style={{color:"#9ca3af", marginTop:"0.25rem", margin:"0"}}>{song.artist}</p>
             </Link>
           ))
         ) : (
-          <p className="text-gray-400 text-center py-10">No matching songs found.</p>
+          <p style={{textAlign:"center", color:"#9ca3af", padding:"2.5rem 0"}}>No matching songs found.</p>
         )}
       </div>
     </main>
