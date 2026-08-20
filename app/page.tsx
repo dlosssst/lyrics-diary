@@ -1,26 +1,12 @@
 "use client";
 import { useState } from "react";
-
-const songs = [
-  {
-    id:1,
-    title:"Demo Song",
-    artist:"Diary Lyrics",
-    zh:"中文歌词第一行\n中文歌词第二行",
-    en:"English line 1\nEnglish line 2",
-    vi:"Tiếng Việt dòng 1\nTiếng Việt dòng 2"
-  }
-];
-
-type Song = typeof songs[0];
+import GlobalProtect from "./GlobalProtect";
 
 export default function Home(){
-  const [currentSong] = useState<Song>(songs[0]);
   const [name, setName] = useState('');
   const [msg, setMsg] = useState('');
   const [tip, setTip] = useState('');
 
-  // 移除所有接口请求，只做前端提示
   const submitWish = () => {
     if (!name || !msg) {
       setTip('Please fill in all fields / 请填写完整信息');
@@ -33,17 +19,21 @@ export default function Home(){
 
   return (
     <main className="max-w-4xl mx-auto p-4 select-none">
+      <GlobalProtect />
       <h1 className="text-2xl font-bold mb-6">Lyrics Diary</h1>
 
       <div className="my-8 whitespace-pre-line leading-relaxed text-lg">
         <h3 className="font-bold mt-4">中文歌词</h3>
-        {currentSong.zh}
+        <p>晚风轻划过窗台
+心事藏进音符之中</p>
 
         <h3 className="font-bold mt-6">English Lyrics</h3>
-        {currentSong.en}
+        <p>The wind brushes the window quietly
+All feelings stay inside the melody</p>
 
         <h3 className="font-bold mt-6">Tiếng Việt</h3>
-        {currentSong.vi}
+        <p>Gió nhẹ vuốt ve ô cửa sổ
+Nỗi lòng giấu trong từng nốt nhạc</p>
       </div>
 
       <div className="mt-12 border-t pt-6">
