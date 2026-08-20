@@ -21,3 +21,20 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: err.message }, { status: 400 });
   }
 }
+
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const songId = searchParams.get("songId");
+  const supabase = createClient();
+
+  const { data, error } = await supabase
+    .from("wishes")
+    .select("id,visitor_name,message,created_at")
+    .eq("song_id", songId)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 400 });
+  }
+  return NextResponse.json({ list: data });
+}
