@@ -23,12 +23,12 @@ export interface SongItem {
 const R2_CDN = "https://pub‑88c1444853ee4488a95dec807aedcd62.r2.dev";
 
 export const songList: SongItem[] = [
-  {
+{
     id: 1,
     title: "I am a Fish (我是一只鱼)",
     singer: "Zi Yu (梓渝)",
-    videoUrl: `${R2_CDN}/videos/ziyu‑iamafish.mp4`,
-    videoPoster: `${R2_CDN}/images/ziyu‑iamafish‑photo.jpg`,
+    videoUrl: `${R2_CDN}/videos/ziyu-iamafish.mp4`,
+    videoPoster: `${R2_CDN}/images/ziyu-iamafish-photo.jpg`,
     photoList: [
       `${R2_CDN}/images/photo1.jpg`,
     ],
