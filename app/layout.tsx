@@ -5,7 +5,7 @@ import Script from "next/script";
 export const metadata: Metadata = {
   title: "Song List",
   other: {
-    "monetag": "9a4e7f25a0e97d80791f9fb8ea301348",
+    "monetag": "53be088f2e3d3c962a835df673dc910c",
   },
 };
 
