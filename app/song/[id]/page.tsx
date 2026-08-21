@@ -115,4 +115,11 @@ export default function SongDetailPage() {
       </div>
     </div>
   );
+
+        {/* ========== In‑Page Push Banner zone:11621332 仅歌词详情页加载 ========== */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `(function(s){s.dataset.zone='11621332',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))`
+        }}
+      />
 }
