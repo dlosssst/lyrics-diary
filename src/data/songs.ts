@@ -20,7 +20,7 @@ export interface SongItem {
 }
 
 // ========== 把 https://pub‑xxxx.r2.dev 替换成你自己R2的Public域名 ==========
-const R2_CDN = "https://pub‑88c1444853ee4488a95dec807aedcd62.r2.dev";
+const R2_CDN = "https://pub-88c1444853ee4488a95dec807aedcd62.r2.dev";
 
 export const songList: SongItem[] = [
 {

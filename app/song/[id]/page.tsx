@@ -87,7 +87,7 @@ export default function SongDetailPage() {
             <img
               key={idx}
               src={imgSrc}
-              alt={`photo‑${idx}`}
+              alt={`photo-${idx}`}
               style={{
                 width: "100%",
                 borderRadius: "10px",
