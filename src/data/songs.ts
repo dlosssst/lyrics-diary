@@ -15,12 +15,12 @@ export interface SongItem {
   videoUrl?: string;
   videoPoster?: string;
   photoList: string[];
-  lyric: Record<Lang, string>;
-  lyricsLines: LyricLine[]; // 新增
+  lyric?: Record<Lang, string>; // ✅ 加 ? 变成可选字段，不再强制要求
+  lyricsLines: LyricLine[];
 }
 
 // ========== 把 https://pub‑xxxx.r2.dev 替换成你自己R2的Public域名 ==========
-const R2_CDN = "https://pub-88c1444853ee4488a95dec807aedcd62.r2.dev";
+const R2_CDN = "https://pub‑88c1444853ee4488a95dec807aedcd62.r2.dev";
 
 export const songList: SongItem[] = [
   {
@@ -32,10 +32,7 @@ export const songList: SongItem[] = [
     photoList: [
       `${R2_CDN}/images/photo1.jpg`,
     ],
-    lyric: { // 保留旧多语言字段，兼容旧代码，你可以填占位文本
-      zh: "",
-      en: ""
-    },
+    // ✅ 已删除 lyric 占位对象，因为字段已经是可选
     lyricsLines: [
       {
         cn: "于是乎 我准备对自己守护",
