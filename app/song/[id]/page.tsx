@@ -16,7 +16,7 @@ export default function SongDetailPage() {
 
   const song = songList.find((s) => s.id === Number(id));
 
-  // ✅ 客户端挂载后，动态注入 In-Page Push zone:11621332
+  // ✅ 客户端挂载后，动态注入 In‑Page Push zone:11621332
   useEffect(() => {
     // 防止重复注入
     if ((window as any).__monetag_inpage_11621332) return;
@@ -38,7 +38,7 @@ export default function SongDetailPage() {
 
   return (
     <div style={{ maxWidth: 700, margin: "0 auto", padding: "24px" }}>
-      <a href="/" style={{color:"#2563eb"}}>← Back to Song List</a>
+      <a href="/" style={{ color: "#2563eb" }}>← Back to Song List</a>
 
       {/* 顶部：视频 + 歌曲信息 */}
       <div
@@ -71,34 +71,34 @@ export default function SongDetailPage() {
         </div>
 
         {/* 右侧歌曲信息 */}
-        <div style={{ flex:1, minWidth:0 }}>
+        <div style={{ flex: 1, minWidth: 0 }}>
           {/* <LangSwitch /> */}
-          <h1 style={{ margin:"8px 0", fontSize:"24px" }}>{song.title}</h1>
-          {song.singer && <p style={{ color:"#666", margin:"4px 0" }}>Singer：{song.singer}</p>}
-          {song.dramaName && <p style={{ color:"#666", margin:"4px 0" }}>Drama：{song.dramaName}</p>}
+          <h1 style={{ margin: "8px 0", fontSize: "24px" }}>{song.title}</h1>
+          {song.singer && <p style={{ color: "#666", margin: "4px 0" }}>Singer：{song.singer}</p>}
+          {song.dramaName && <p style={{ color: "#666", margin: "4px 0" }}>Drama：{song.dramaName}</p>}
         </div>
       </div>
 
       {/* 剧照图片区域 */}
-      <div style={{margin:"32px 0"}}>
-        <h2 style={{fontSize:18, marginBottom:16}}>Gallery</h2>
-        <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"12px"}}>
-          {song.photoList.map((imgSrc, idx)=> (
+      <div style={{ margin: "32px 0" }}>
+        <h2 style={{ fontSize: 18, marginBottom: 16 }}>Gallery</h2>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+          {song.photoList.map((imgSrc, idx) => (
             <img
               key={idx}
               src={imgSrc}
-              alt={`photo-${idx}`}
+              alt={`photo‑${idx}`}
               style={{
-                width:"100%",
-                borderRadius:"10px",
-                objectFit:"cover",
+                width: "100%",
+                borderRadius: "10px",
+                objectFit: "cover",
               }}
             />
           ))}
         </div>
       </div>
 
-      {/* 歌词区块暂时注释，以后要恢复直接取消注释即可
+      {/* ========== 歌词区块：中文｜拼音｜英文 三行一组 ========== */}
       <div
         style={{
           border: "1px solid #e5e7eb",
@@ -106,24 +106,23 @@ export default function SongDetailPage() {
           padding: "24px",
           background: "#fffef7",
           boxShadow: "0 4px 14px rgba(0,0,0,.06)",
+          marginTop: "32px"
         }}
       >
-        <h2 style={{ margin: "0 0 16px 0", fontSize: "18px" }}>Lyrics</h2>
-        <pre
-          style={{
-            whiteSpace: "pre-wrap",
-            fontSize: "16px",
-            lineHeight: 1.8,
-            margin: 0,
-          }}
-        >
-          {song.lyric[lang]}
-        </pre>
+        <h2 style={{ margin: "0 0 20px 0", fontSize: "18px" }}>Lyrics</h2>
+        <div style={{ display: "flex", flexDirection: "column", gap: "22px" }}>
+          {song.lyricsLines.map((line, idx) => (
+            <div key={idx}>
+              <div style={{ fontSize: "17px", marginBottom: "4px" }}>{line.cn}</div>
+              <div style={{ fontSize: "14px", color: "#444", marginBottom: "4px" }}>{line.pinyin}</div>
+              <div style={{ fontSize: "14px", color: "#666" }}>{line.en}</div>
+            </div>
+          ))}
+        </div>
       </div>
-      */}
 
       {/* Messages留言区保留不动 */}
-      <div style={{marginTop:"32px"}}>
+      <div style={{ marginTop: "32px" }}>
         <h2>Messages</h2>
         {/* 你的留言表单、留言渲染代码全部放这里 */}
       </div>
