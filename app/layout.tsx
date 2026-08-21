@@ -19,8 +19,8 @@ export default function RootLayout({
       <body>{children}</body>
       <Script
         src="https://cdn.monetag.com/sdk.js"
-        data-zone="你的真实ZoneID"
-        data-sdk="show_你的真实ZoneID"
+        data-zone="<script>(function(s){s.dataset.zone='11621212',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>"
+        data-sdk="<script>(function(s){s.dataset.zone='11621212',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>"
         strategy="afterInteractive"
       />
     </html>
