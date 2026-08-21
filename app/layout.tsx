@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Script } from "next/script";
+// 去掉大括号！！
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Song List",
@@ -16,11 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>{children}</body>
-      {/* monetag sdk 广告脚本，替换为你真实ZoneID */}
       <Script
         src="https://cdn.monetag.com/sdk.js"
-        data-zone="你的ZoneID"
-        data-sdk="show_你的ZoneID"
+        data-zone="你的真实ZoneID"
+        data-sdk="show_你的真实ZoneID"
         strategy="afterInteractive"
       />
     </html>
