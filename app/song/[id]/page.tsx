@@ -6,7 +6,6 @@ import { useParams, useRouter } from "next/navigation";
 // import LangSwitch from "../../LangSwitch";
 import { songList } from "@/src/data/songs";
 
-
 export default function SongDetailPage() {
   const params = useParams();
   const router = useRouter();
@@ -46,15 +45,15 @@ export default function SongDetailPage() {
             background: "#000",
           }}
         >
-<video
-  controls
-  controlsList="nodownload"
-  onContextMenu={(e) => e.preventDefault()}
-  poster={song.videoPoster || ""}
-  style={{ width: "100%", height: 158, objectFit: "cover" }}
->
-  <source src={song.videoUrl || ""} type="video/mp4" />
-</video>
+          <video
+            controls
+            controlsList="nodownload"
+            onContextMenu={(e) => e.preventDefault()}
+            poster={song.videoPoster || ""}
+            style={{ width: "100%", height: 158, objectFit: "cover" }}
+          >
+            <source src={song.videoUrl || ""} type="video/mp4" />
+          </video>
         </div>
 
         {/* 右侧歌曲信息 */}
@@ -114,6 +113,13 @@ export default function SongDetailPage() {
         <h2>Messages</h2>
         {/* 你的留言表单、留言渲染代码全部放这里 */}
       </div>
+
+      {/* ===== Vignette 广告脚本，放在页面最底部 ===== */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `(function(s){s.dataset.zone='11621212',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))`
+        }}
+      />
     </div>
   );
 }
