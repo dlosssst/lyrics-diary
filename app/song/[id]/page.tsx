@@ -46,13 +46,15 @@ export default function SongDetailPage() {
             background: "#000",
           }}
         >
-          <video
-            controls
-            poster={song.videoPoster || ""}
-            style={{ width: "100%", height: 158, objectFit: "cover" }}
-          >
-            <source src={song.videoUrl || ""} type="video/mp4" />
-          </video>
+<video
+  controls
+  controlsList="nodownload"
+  onContextMenu={(e) => e.preventDefault()}
+  poster={song.videoPoster || ""}
+  style={{ width: "100%", height: 158, objectFit: "cover" }}
+>
+  <source src={song.videoUrl || ""} type="video/mp4" />
+</video>
         </div>
 
         {/* 右侧歌曲信息 */}
