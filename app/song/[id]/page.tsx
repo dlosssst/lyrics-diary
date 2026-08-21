@@ -113,13 +113,6 @@ export default function SongDetailPage() {
         <h2>Messages</h2>
         {/* 你的留言表单、留言渲染代码全部放这里 */}
       </div>
-
-      {/* Monetag Vignette Banner zone:11621212 */}
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `(function(s){s.dataset.zone='11621212',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))`
-        }}
-      />
     </div>
   );
 }
