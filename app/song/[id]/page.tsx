@@ -1,5 +1,7 @@
 "use client";
 
+// ✅ useEffect 从 react 导入，不是 next/navigation
+import { useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 // 临时注释语言切换，解决模块找不到报错
 // import { useLang } from "../../LangContext";
@@ -13,6 +15,18 @@ export default function SongDetailPage() {
   // const { lang } = useLang();
 
   const song = songList.find((s) => s.id === Number(id));
+
+  // ✅ 客户端挂载后，动态注入 In-Page Push zone:11621332
+  useEffect(() => {
+    // 防止重复注入
+    if ((window as any).__monetag_inpage_11621332) return;
+    (window as any).__monetag_inpage_11621332 = true;
+
+    const script = document.createElement("script");
+    script.dataset.zone = "11621332";
+    script.src = "https://nap5k.com/tag.min.js";
+    document.body.appendChild(script);
+  }, []);
 
   if (!song) {
     return (
@@ -115,11 +129,4 @@ export default function SongDetailPage() {
       </div>
     </div>
   );
-
-        {/* ========== In‑Page Push Banner zone:11621332 仅歌词详情页加载 ========== */}
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `(function(s){s.dataset.zone='11621332',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))`
-        }}
-      />
 }
