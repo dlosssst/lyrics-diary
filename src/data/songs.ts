@@ -19,7 +19,6 @@ export const songList: SongItem[] = [
     id: 1,
     title: "I am a Fish (我是一只鱼)",
     singer: "Zi Yu (梓渝)",
-    dramaName: "大唐迷雾",
     videoUrl: `${R2_CDN}/videos/ziyu-iamafish.mp4`,
     videoPoster: `${R2_CDN}/images/ziyu-iamafish-photo.jpg`,
     photoList: [
